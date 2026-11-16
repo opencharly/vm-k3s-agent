@@ -22,8 +22,9 @@ join-token handoff, only the server URL plus the credential-store token.
 | Files | `/etc/rancher/k3s/config.yaml` (0600), `/etc/systemd/system/k3s-agent.service` |
 
 `K3S_CLUSTER_TOKEN` is provisioned automatically: whichever of `k3s-server` /
-`k3s-agent` resolves the `secret_require:` first generates a 32-byte hex token
-and the other reads the persisted value. Override only when reproducing a
+`k3s-agent` resolves the `secret_require:` first generates one — 32 random bytes
+as url-safe base64, 44 characters — and the other reads the persisted value.
+Override only when reproducing a
 specific cluster identity:
 
 ```bash

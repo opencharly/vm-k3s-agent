@@ -11,8 +11,8 @@ k3s-agent:
             - '@github.com/opencharly/layer-k3s:v2026.277.1356'
         # Same pre-shared token as k3s-server consumes. Both layers declare
         # secret_require with the same name, so whichever resolves first
-        # auto-generates a 32-byte hex token via the credential store
-        # (DefaultCredentialStore.Set) and the other reads the persisted
+        # auto-generates one — 32 random bytes as url-safe base64, 44
+        # characters — through the credential store, and the other reads the persisted
         # value — server and every agent automatically share the token with
         # zero operator setup. Override only when you need a specific value:
         #   charly secrets set charly/secret/K3S_CLUSTER_TOKEN <value>
